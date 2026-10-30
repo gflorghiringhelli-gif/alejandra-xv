@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+   <title>Alejandra Marín · Mis XV</title>
+   
+   <!-- FUENTES DE ALTA GAMA -->
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Pinyon+Script&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+   
+   <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+   <!-- NOTIFICACIÓN TOAST -->
+   <div id="toast" class="toast">¡Información copiada! 📋✨</div>
+
+   <!-- MÚSICA DE FONDO -->
+   <audio id="musicaInvitacion" preload="auto" loop>
+      <source src="img/musica.mp3" type="audio/mpeg">
+   </audio>
+
+   <!-- BOTÓN FLOTANTE DE MÚSICA -->
+   <div id="music-toggle" class="music-btn" onclick="toggleMusic()">
+       <i class="fa-solid fa-music"></i>
+   </div>
+
+   <!-- INTRO / SOBRE INICIAL -->
+   <div id="contenedor-principal" onclick="activarInvitacion()">
+       <video id="videoSobre" playsinline muted preload="auto">
+           <source src="img/1.mp4" type="video/mp4">
+       </video>
+       <img src="img/sobre.png" alt="Sobre" id="imgSobreEstetica" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:2;">
+       <div id="capa-boton">
+           <div class="boton-tropical-inicio" id="btn-toca-abrir">Tocá el sobre para abrir 💌</div>
+       </div>
+   </div>
+
+   <!-- CONTENEDOR TIPO APP MÓVIL CENTRADO -->
+   <div class="mobile-wrapper">
+       <div id="seccion-final" class="oculto">
+          
+           <!-- PORTADA HERO VIDEO (SE REPRODUCE UNA VEZ Y SE CONGELA) -->
+           <section class="video-deco-container">
+               <video id="videoDeco" playsinline muted preload="auto">
+                   <source src="img/portada.mp4" type="video/mp4">
+               </video>
+               <div class="scroll-indicator-wrap">
+                   <span class="desliza-tag">Deslizá</span>
+                   <div class="arrow-down"></div>
+               </div>
+           </section>
+
+           <!-- BLOQUE DE CONTENIDO GENERAL -->
+           <div class="bloque-fondo-tropical">
+
+               <!-- MENSAJE DE BIENVENIDA -->
+               <section class="section-pad reveal">
+                   <div class="glass-card-tropical">
+                       <p class="text-body">
+                           "Con gran alegría, tengo el honor de invitarte a la celebración de mis XV años. Será un placer contar con tu distinguida presencia en esta noche tan especial."
+                       </p>
+                   </div>
+               </section>
+
+               <!-- SAVE THE DATE + REVELADO + COUNTDOWN -->
+               <section class="section-pad reveal">
+                   <div class="glass-card-tropical">
+                       <h2 class="title-tropical">Save the Date</h2>
+                       <p class="instruction">Tocá los 3 círculos para descubrir la fecha</p>
+                       
+                       <div class="circles-grid">
+                           <button type="button" class="circle-btn" onclick="revealDate(this, '04')">?</button>
+                           <button type="button" class="circle-btn" onclick="revealDate(this, 'DIC')">?</button>
+                           <button type="button" class="circle-btn" onclick="revealDate(this, '2026')">?</button>
+                       </div>
+                       
+                       <div id="revealed-date-msg" class="revealed-date-container">
+                           <p class="day-text">Viernes 4 de diciembre de 2026</p>
+
+                           <div class="countdown-wrapper mt-20">
+                               <h3 class="subtitle-tropical">Faltan...</h3>
+                               <div class="countdown-grid">
+                                   <div class="timer-box"><span id="days">00</span><small>Días</small></div>
+                                   <div class="timer-box"><span id="hours">00</span><small>Horas</small></div>
+                                   <div class="timer-box"><span id="minutes">00</span><small>Minutos</small></div>
+                                   <div class="timer-box"><span id="seconds">00</span><small>Segundos</small></div>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+               </section>
+
+               <!-- CRONOGRAMA MEJORADO Y FINO -->
+               <section class="section-pad reveal">
+                   <div class="glass-card-tropical">
+                       <h2 class="title-tropical">Cronograma</h2>
+                       
+                       <div class="sub-block">
+                           <div class="icon-circle-box"><i class="fa-solid fa-church"></i></div>
+                           <h3 class="location-title">Ceremonia Religiosa</h3>
+                           <p class="date-highlight">Jueves 3 de diciembre · 19:00 hs</p>
+                           <p class="address">Parroquia Santísimo Redentor</p>
+                           <div class="gps-btn-group">
+                               <a href="https://maps.app.goo.gl" target="_blank" class="btn-sm-tropical"><i class="fa-solid fa-location-dot"></i> Google Maps</a>
+                           </div>
+                       </div>
+                       
+                       <div class="sub-block mt-30" style="border-top: 1px dashed rgba(253, 126, 20, 0.3); padding-top: 25px;">
+                           <div class="icon-circle-box gold-icon"><i class="fa-solid fa-glass-cheers"></i></div>
+                           <h3 class="location-title">Gran Fiesta de 15</h3>
+                           <p class="date-highlight">Viernes 4 de diciembre · 21:00 hs</p>
+                           <p class="address">Ex Hotel Ita Enramada</p>
+                           <div class="gps-btn-group">
+                               <a href="https://maps.app.goo.gl" target="_blank" class="btn-sm-tropical"><i class="fa-solid fa-location-dot"></i> Google Maps</a>
+                           </div>
+                       </div>
+                   </div>
+               </section>
+
+               <!-- DRESS CODE MEJORADO -->
+               <section class="section-pad reveal">
+                   <div class="glass-card-tropical">
+                       <h2 class="title-tropical">Dress Code</h2>
+                       <p class="highlight-text">ELEGANTE</p>
+                       <div class="alert-box mt-15">
+                           ✨ Rogamos encarecidamente evitar el color blanco.
+                       </div>
+                   </div>
+               </section>
+
+               <!-- MURO DE DESEOS -->
+               <section class="section-pad reveal">
+                   <div class="glass-card-tropical">
+                       <h2 class="title-tropical">Muro de Deseos</h2>
+                       <p class="text-body" style="font-size: 0.9rem; margin-bottom: 14px;">Déjale un mensaje de cariño a Alejandra</p>
+                       <div class="wish-form" style="display:flex; flex-direction:column; gap:12px;">
+                           <input type="text" id="wishName" placeholder="Tu nombre..." class="input-pro">
+                           <textarea id="wishText" rows="3" placeholder="Escribe tu deseo..." class="input-pro"></textarea>
+                           <button type="button" onclick="enviarDeseo()" class="btn-tropical-action">Publicar Deseo 💌</button>
+                       </div>
+                   </div>
+               </section>
+
+               <!-- ÁLBUM COLECTIVO -->
+               <section class="section-pad reveal">
+                   <div class="glass-card-tropical">
+                       <h2 class="title-tropical">Álbum Colectivo</h2>
+                       <p class="text-body" style="font-size: 0.95rem; margin-bottom: 16px; font-style: italic;">
+                           "Guardemos juntos cada instante. Subí tus fotos y videos para revivir esta noche inolvidable." 📸✨
+                       </p>
+                       <a href="https://drive.google.com" target="_blank" class="btn-tropical-action" style="text-decoration: none; display: block; text-align: center;">
+                           <i class="fa-solid fa-cloud-arrow-up"></i> SUBIR MIS FOTOS
+                       </a>
+                   </div>
+               </section>
+               
+               <!-- CONFIRMACIÓN DE ASISTENCIA (RSVP) -->
+               <section class="section-pad reveal">
+                   <div class="glass-card-tropical rsvp-card-highlight">
+                       <h2 class="title-tropical" style="color: #fff;">Confirmación</h2>
+                       <p class="text-body" style="color: #fff; opacity: 0.95;">Por favor confirmar tu presencia hasta el <strong>20 / 11 / 2026</strong></p>
+                       <div class="mt-15">
+                           <a href="https://wa.me/595984685866?text=¡Hola!%20Confirmo%20mi%20asistencia%20a%20los%2015%20de%20Alejandra%20Marín." class="btn-whatsapp" target="_blank">
+                               <i class="fa-brands fa-whatsapp"></i> Confirmar por WhatsApp
+                           </a>
+                       </div>
+                   </div>
+               </section>
+
+               <!-- CIERRE -->
+               <section class="section-pad reveal" style="padding-bottom: 50px;">
+                   <div class="glass-card-tropical" style="padding: 45px 20px;">
+                       <p style="font-family: var(--font-sans); font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase; color: #666; margin-bottom: 10px;">¡Te espero! Con cariño ♡</p>
+                       <h2 class="quince-name-title" style="font-size: 3.8rem !important;">Alejandra Marín</h2>
+                   </div>
+               </section>
+
+               <footer>✦ GHISA DIGITAL · XV ALEJANDRA MARÍN ✦</footer>
+
+           </div> <!-- FIN BLOQUE TROPICAL -->
+
+       </div>
+   </div>
+
+   <script src="script.js"></script>
+</body>
+</html>
